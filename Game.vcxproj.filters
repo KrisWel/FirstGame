@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Entyties">
+      <UniqueIdentifier>{1739d9e4-5f89-405b-8d11-1c86bab773b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapons">
+      <UniqueIdentifier>{a680f462-ec76-402c-a5b3-a8d40dbcf59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus">
+      <UniqueIdentifier>{9923d9ed-b24e-4e23-9a35-364ac34f51b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DELETE">
+      <UniqueIdentifier>{72c1ea96-4b60-48ed-bcd0-3e08a859b271}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Ally.cpp">
+      <Filter>Entyties</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entyties</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Entyties</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entyties</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Entyties</Filter>
+    </ClCompile>
+    <ClCompile Include="States.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>DELETE</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entyties</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Entyties</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entyties</Filter>
+    </ClInclude>
+    <ClInclude Include="Ally.h">
+      <Filter>Entyties</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Bibliotecs.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Entyties</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>DELETE</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
