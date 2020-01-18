@@ -23,6 +23,14 @@ public:
 	void saveToFile();
 	void loadFromFile();
 
+	bool ifAttack;
+	bool ifCollision;
+	
+	const int getImage();
+
+	bool ifSwordP;
+	bool tempSword;
+
 private:
 
 	//Variables
@@ -30,6 +38,8 @@ private:
 	sf::Vector2f size;
 	sf::RectangleShape body;
 
-	friend class Collision;
+	Animation* animation;
+
+	//friend class Collision;
 };
 

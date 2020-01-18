@@ -6,6 +6,7 @@ States::States(sf::RenderWindow* window, std::stack<States*>* states)
 	this->window = window; //Creating a new "window" for every state
 	this->endTopState = false;
 	this->states = states;
+	//Initializers
 	this->initializeFonts();
 	this->initializeMusic();
 }

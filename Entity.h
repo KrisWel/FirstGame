@@ -28,12 +28,11 @@ protected:
 	sf::Sprite sprite;
 	sf::Texture texture;
 
-	Animation* animation;
+	
 	unsigned int row;
 	bool faceRight;
 
 private:
-
 	//Initializors
 	void initializeVariables();
 

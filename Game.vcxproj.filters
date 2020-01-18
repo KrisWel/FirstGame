@@ -22,6 +22,9 @@
     <Filter Include="Menus">
       <UniqueIdentifier>{9923d9ed-b24e-4e23-9a35-364ac34f51b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DELETE">
+      <UniqueIdentifier>{72c1ea96-4b60-48ed-bcd0-3e08a859b271}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -64,7 +67,7 @@
       <Filter>Menus</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>DELETE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +111,7 @@
       <Filter>Menus</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>DELETE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

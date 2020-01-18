@@ -8,7 +8,7 @@ public:
 
 	//Constructor & Destructor
 	StartMenu(sf::RenderWindow* window, std::stack<States*>* states);
-	virtual ~StartMenu();
+	~StartMenu();
 
 	//Initializors
 	void initializeButtons();
@@ -22,14 +22,14 @@ public:
 private:
 
 	//Variables
-	std::vector<sf::Texture> texutre;
-	sf::RectangleShape background;
-	sf::RectangleShape button_background;
-	sf::Texture backgroundTexture;
 	std::map<std::string, Button*>buttons;
-	sf::Music music;
-	
+	sf::RectangleShape button_background;
 	bool resumebutton;
 
+	sf::Texture backgroundTexture;
+	sf::RectangleShape background;
+
+	sf::Music music;
+	
 };
 

@@ -76,7 +76,7 @@ void Button::render(sf::RenderTarget* target)
 
 const bool Button::ifButtonPressed() const
 {
-	if (this->buttonState ==	pressed)
+	if (this->buttonState == pressed)
 		return true;
 
 	return false;

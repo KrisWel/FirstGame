@@ -3,7 +3,6 @@
 //									CONSTRUCTOR & DESTRUCTOR
 
 Player::Player(float x, float y, sf::Texture& texture, sf::Vector2u imageCount, float switchTime)
-	: Entity()
 {
 	this->texture = texture;
 	this->sprite.setPosition(x, y);
@@ -12,13 +11,18 @@ Player::Player(float x, float y, sf::Texture& texture, sf::Vector2u imageCount, 
 	this->row = 0;
 	this->faceRight = true;
 	this->movementSpeed = 1000.f;
+	this->ifAttack = false;
+	this->ifCollision = false;
 	
 	this->animation = new Animation(&this->texture, imageCount, switchTime);
+
+	this->ifSwordP = false;
+	tempSword = false;
 }
 
 Player::~Player()
 {
-	
+	delete this->animation;
 }
 
 //									FUNCTIONS
@@ -33,7 +37,9 @@ void Player::collision(sf::RectangleShape& shape, const float& dt)
 	if (this->sprite.getGlobalBounds().intersects(shape.getGlobalBounds()))
 	{
 		this->sprite.move(-this->movement);
+		this->ifCollision = true;
 	}
+	else this->ifCollision = false;
 }
 
 void Player::saveToFile()
@@ -44,7 +50,10 @@ void Player::saveToFile()
 	{
 		file << getStats(i) << "\n";
 	}
-	file << this->sprite.getPosition().x << " " << this->sprite.getPosition().y;
+	file << this->sprite.getPosition().x << " " << this->sprite.getPosition().y << "\n";
+	if (tempSword)
+		file << "1";
+	else file << "0";
 	file.close();
 }
 
@@ -53,6 +62,7 @@ void Player::loadFromFile()
 	std::ifstream file("save.txt");
 	unsigned int temp[6];
 	float a, b;
+	bool sword;
 	for (int i = 0; i <= 5; i++)
 	{
 		file >> temp[i];
@@ -61,7 +71,19 @@ void Player::loadFromFile()
 
 	setStats(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
 	this->sprite.setPosition({ a, b });
+	file >> sword;
+	if (sword)
+	{
+		if (!this->texture.loadFromFile("graphics/sheet_s.png"))
+			throw("TEXTURES ERROR");
+		this->sprite.setTexture(this->texture);
+	}
 	file.close();
+}
+
+const int Player::getImage()
+{
+	return this->animation->getCurrentImage();
 }
 
 
@@ -108,14 +130,31 @@ void Player::update(const float& dt)
 	else if (movement.y != 0.f)
 		row = 1;
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		row = 2;
+	{
+		row = 2;   
+		this->ifAttack = true;
+	}
+	else this->ifAttack = false;
+
+	//picking sword
+	if (ifSwordP)
+	{
+		if (!this->texture.loadFromFile("graphics/sheet_s.png"))
+			throw("TEXTURES ERROR");
+		this->sprite.setTexture(this->texture);
+		tempSword = true;
+	}
+	ifSwordP = false;
+
 	this->animation->update(row, dt, faceRight);
 	
 	this->sprite.setTextureRect(animation->uvRect);
 	this->sprite.move(movement);
 
-	this->body.setSize({ (float)this->texture.getSize().x, (float)this->texture.getSize().y });
-	this->body.setPosition(this->sprite.getPosition());
+
+
+	//this->body.setSize({ static_cast<float>(this->texture.getSize().x), static_cast<float>(this->texture.getSize().y )});
+	//this->body.setPosition(this->sprite.getPosition());
 	
 }
 

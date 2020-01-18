@@ -11,6 +11,7 @@ public:
 
 	//Functions
 	void update(int row, const float& dt, bool faceRight);
+	const int getCurrentImage();
 
 	//Variables
 	sf::IntRect uvRect;

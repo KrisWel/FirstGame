@@ -9,8 +9,8 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switch
 	this->totalTime = 0.f;
 	this->currentimage.x = 0;
 
-	this->uvRect.width = texture->getSize().x / float(imageCount.x);
-	this->uvRect.height = texture->getSize().y / float(imageCount.y);
+	this->uvRect.width = static_cast<float>(texture->getSize().x) / static_cast<float>(imageCount.x);
+	this->uvRect.height = static_cast<float>(texture->getSize().y) / static_cast<float>(imageCount.y);
 }
 
 Animation::~Animation()
@@ -21,7 +21,12 @@ Animation::~Animation()
 
 void Animation::update(int row, const float& dt, bool faceRight)
 {
-	this->currentimage.y = row;
+	if (row != currentimage.y)
+	{
+		currentimage.x = 0;
+		currentimage.y = row;
+	}
+		
 	this->totalTime += dt;
 
 	//Changing the image
@@ -46,4 +51,9 @@ void Animation::update(int row, const float& dt, bool faceRight)
 		uvRect.left = (currentimage.x + 1) * abs(uvRect.width);
 		uvRect.width = -abs(uvRect.width);
 	}
+}
+
+const int Animation::getCurrentImage()
+{
+	return this->currentimage.x;
 }

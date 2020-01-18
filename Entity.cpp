@@ -9,7 +9,7 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-	delete this->animation;
+
 }
 
 //								INITIALIZORS

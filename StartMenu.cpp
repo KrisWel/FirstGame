@@ -86,7 +86,7 @@ void StartMenu::update(const float& dt)
 {
 	this->updateMousePosition();
 	
-	//updating keys
+	//updating buttons
 	for (auto& it : this->buttons)
 	{
 		it.second->update(this->mousePosView);
