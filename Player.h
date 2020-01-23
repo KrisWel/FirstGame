@@ -5,11 +5,13 @@
 class Player : public Entity
 {
 public:
+
+	//Constructor & Destructor
 	Player(float x, float y, sf::Texture& texture, sf::Vector2u imageCount, float switchTime);
 	~Player();
 
 	//Functions
-	const int getStats(const int stat);
+	const int getStats(const int stat) const;
 	void update(const float& dt);
 	void render(sf::RenderTarget* target);
 	void ifDead();
@@ -17,7 +19,7 @@ public:
 		unsigned int strength, unsigned int dexterity, 
 		unsigned int money, unsigned int dmg, unsigned int lvl);
 
-	sf::Vector2f getPosition();
+	const sf::Vector2f getPosition() const;
 	void collision(sf::RectangleShape& shape, const float& dt);
 
 	void saveToFile();
@@ -26,7 +28,7 @@ public:
 	bool ifAttack;
 	bool ifCollision;
 	
-	const int getImage();
+	const int getImage() const;
 
 	bool ifSwordP;
 	bool tempSword;

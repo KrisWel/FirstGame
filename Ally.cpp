@@ -16,7 +16,7 @@ Ally::~Ally()
 {
 }
 
-const int Ally::getStats(const int stat)
+const int Ally::getStats(const int stat) const
 {
 	if (stat == 1) return this->hp;
 	else if (stat == 2) return this->strength;

@@ -21,7 +21,7 @@ Animation::~Animation()
 
 void Animation::update(int row, const float& dt, bool faceRight)
 {
-	if (row != currentimage.y)
+	if (row != currentimage.y) //if ROW is changing, then animation start from beginning
 	{
 		currentimage.x = 0;
 		currentimage.y = row;

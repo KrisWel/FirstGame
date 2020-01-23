@@ -6,25 +6,28 @@ MainMenu::MainMenu(sf::RenderWindow* window, std::stack<States*>* states, bool l
 	: States(window, states)
 {
 	this->window = window;
+	this->view.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) });
 	this->initializeBackground();
 	this->initializeTextures();
+	musicMain.play();
 
 	//ENTITY
 	this->player = new Player(3800.f, 450.f, this->texture["Player"], sf::Vector2u(3, 3), 0.45f);
 	this->ally = new Ally(3200.f, 2200.f, this->texture["Diego"]);
 	
-	this->stats = false;
-	Enemydeads = 0;
-	temp = 0;
 	this->enemy[0] = new Enemy(2220.f, 3425.f, this->texture["Enemy"]);
 	this->enemy[1] = new Enemy(1910.f, 3535.f, this->texture["Enemy"]);
 	this->enemy[2] = new Enemy(3660.f, 3475.f, this->texture["Enemy"]);
 	this->enemy[3] = new Enemy(2530.f, 600.f, this->texture["Enemy"]);
 	this->enemy[4] = new Enemy(5300.f, 3600.f, this->texture["Enemy"]);
+	if (!swords)
+		this->sword = new Sword(4600.f, 970.f, this->texture["Sword"]);
+
 	for (int i = 0; i < 5; i++)
 	{
-		this->enemy[i]->setStats(20, 10, 10, 0, 20, 1);
+		this->enemy[i]->setStats(30, 10, 10, 0, 20, 1);
 	}
+
 	//LOAD FROM FILE
 	if (!loadGame)
 	{
@@ -38,18 +41,8 @@ MainMenu::MainMenu(sf::RenderWindow* window, std::stack<States*>* states, bool l
 			swords = true;
 		swords = false;
 	}
-	if (!swords)
-		this->sword = new Sword(4600.f, 970.f, this->texture["Sword"]);
 
-	this->paused = false;
-	this->view.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) });
-	this->quest = false;
-	this->spawn = false;
-	end = false;
-
-	musicMain.play();
-	time = 0.f;
-
+	//Text
 	endText.setCharacterSize(100);
 	endText.setFont(this->font);
 	endText.setFillColor(sf::Color::Red);
@@ -62,6 +55,19 @@ MainMenu::MainMenu(sf::RenderWindow* window, std::stack<States*>* states, bool l
 	questText.setCharacterSize(50);
 	questText.setFont(this->font);
 	questText.setFillColor(sf::Color::Red);
+
+
+	//VARIABLES
+	Enemydeads = 0;
+	temp = 0;
+	time = 0.f;
+
+	//BOOLS
+	this->stats = false;
+	this->quest = false;
+	this->spawn = false;
+	this->paused = false;
+	end = false;
 
 	//Collision blocks
 	for (int i = 0; i < 4; i++)
@@ -191,14 +197,11 @@ void MainMenu::render(sf::RenderTarget* target)
 		target->draw(this->backgroundStats);
 		target->draw(this->statistics);
 	}
-
 	if (quest)
 	{
 		target->draw(this->backgroundQuest);
 		target->draw(this->questText);
 	}
-
-	
 
 	//rendering
 	this->player->render(this->window);
@@ -254,9 +257,8 @@ void MainMenu::update(const float& dt)
 				for (int i = 0; i < 5; i++)
 					this->enemy[i]->update(dt);
 
-			//Collision***********************
+			//Collision************************************
 			//QUEST
-
 			this->player->collision(this->ally->shape, dt);
 			if (this->player->ifCollision)
 			{
@@ -265,7 +267,7 @@ void MainMenu::update(const float& dt)
 			}
 
 
-			//PICKING SWORD************
+			//PICKING SWORD********************************
 			if (!swords)
 			{
 				this->player->collision(this->sword->shape, dt);
@@ -284,6 +286,7 @@ void MainMenu::update(const float& dt)
 					);
 				}
 			}
+			//PICKING SWORD********************************
 
 			for (int i = 0; i < 4; i++)
 			{
@@ -291,7 +294,7 @@ void MainMenu::update(const float& dt)
 			}
 			if (spawn)
 			{
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < 5; i++)//ATTACK ENEMY***************
 				{
 					this->player->collision(this->enemy[i]->shape, dt);
 					if (this->player->ifAttack && this->player->getImage() == 2 && this->player->ifCollision)
@@ -314,6 +317,7 @@ void MainMenu::update(const float& dt)
 						this->player->getStats(6) + 1
 					);
 				}
+					//player STATS***********************
 				temp = Enemydeads;
 				if (Enemydeads < 5)
 					Enemydeads = 0;
@@ -346,7 +350,7 @@ void MainMenu::update(const float& dt)
 				}
 
 			}
-
+			//updating keys******************************************************
 			//STATISTICS*************************************************************
 			if (stats)
 			{
@@ -390,7 +394,7 @@ void MainMenu::update(const float& dt)
 						static_cast<float>(this->view.getCenter().x) + static_cast<float>(this->window->getSize().x) / 6.f,
 						static_cast<float>(this->view.getCenter().y) - static_cast<float>(this->window->getSize().y) / 3.f
 					});
-			}
+			}//STATISTICS*************************************************************
 			if (quest)
 			{
 				this->backgroundQuest.setPosition(
@@ -444,7 +448,7 @@ void MainMenu::update(const float& dt)
 			}
 		}
 	}
-	else
+	else // THIS IS THE END
 	{
 		this->initializeButtons();
 		auto its = this->buttons.find("Exit");
@@ -469,6 +473,7 @@ void MainMenu::update(const float& dt)
 			}
 		);
 	}
+	//THE END
 }
 
 void MainMenu::endState()

@@ -4,12 +4,13 @@
 class Entity
 {
 public:
+
 	//Constructor & Destructor
 	Entity();
 	virtual ~Entity();
 
 	//Functions
-	virtual const int getStats(const int stat) = 0;
+	virtual const int getStats(const int stat) const = 0;
 	virtual void update(const float& dt) = 0;
 	virtual void render(sf::RenderTarget* target) = 0;
 	virtual void ifDead() = 0;
@@ -28,11 +29,11 @@ protected:
 	sf::Sprite sprite;
 	sf::Texture texture;
 
-	
 	unsigned int row;
 	bool faceRight;
 
 private:
+
 	//Initializors
 	void initializeVariables();
 

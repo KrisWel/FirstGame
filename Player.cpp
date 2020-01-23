@@ -27,7 +27,7 @@ Player::~Player()
 
 //									FUNCTIONS
 
-sf::Vector2f Player::getPosition()
+const sf::Vector2f Player::getPosition() const
 {
 	return this->sprite.getPosition();
 }
@@ -81,13 +81,13 @@ void Player::loadFromFile()
 	file.close();
 }
 
-const int Player::getImage()
+const int Player::getImage() const
 {
 	return this->animation->getCurrentImage();
 }
 
 
-const int Player::getStats(const int stat)
+const int Player::getStats(const int stat) const
 {
 	if (stat == 1) return this->hp;
 	else if (stat == 2) return this->strength;
@@ -113,7 +113,7 @@ void Player::update(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		movement.y += movementSpeed * dt;
 	
-
+	//changing rows from image
 	if (movement.x == 0.f && movement.y == 0.f)
 	{
 		row = 0;
@@ -129,6 +129,7 @@ void Player::update(const float& dt)
 	}
 	else if (movement.y != 0.f)
 		row = 1;
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		row = 2;   
@@ -147,15 +148,9 @@ void Player::update(const float& dt)
 	ifSwordP = false;
 
 	this->animation->update(row, dt, faceRight);
-	
 	this->sprite.setTextureRect(animation->uvRect);
 	this->sprite.move(movement);
 
-
-
-	//this->body.setSize({ static_cast<float>(this->texture.getSize().x), static_cast<float>(this->texture.getSize().y )});
-	//this->body.setPosition(this->sprite.getPosition());
-	
 }
 
 void Player::render(sf::RenderTarget* target)

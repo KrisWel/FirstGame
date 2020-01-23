@@ -9,8 +9,8 @@ public:
 	~Enemy();
 
 	//Functions
-	const sf::Vector2f getposition();
-	const int getStats(const int stat);
+	const sf::Vector2f getposition() const;
+	const int getStats(const int stat) const;
 	void update(const float& dt);
 	void render(sf::RenderTarget* target);
 	void ifDead();
@@ -19,11 +19,14 @@ public:
 		unsigned int money, unsigned int dmg, unsigned int lvl);
 	void getDMG(int dmg, const float& dt);
 
-
+	//Variables
 	sf::RectangleShape shape;
 
 private:
+
 	//Variables
 	float deltatime;
+	sf::Color temp;
+	
 };
 

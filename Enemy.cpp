@@ -18,12 +18,12 @@ Enemy::~Enemy()
 {
 }
 
-const sf::Vector2f Enemy::getposition()
+const sf::Vector2f Enemy::getposition() const
 {
 	return this->sprite.getPosition();
 }
 
-const int Enemy::getStats(const int stat)
+const int Enemy::getStats(const int stat) const
 {
 	if (stat == 1) return this->hp;
 	else if (stat == 2) return this->strength;
@@ -37,6 +37,7 @@ const int Enemy::getStats(const int stat)
 void Enemy::update(const float& dt)
 {
 	ifDead();
+	this->sprite.setColor(sf::Color(255, 255, 255, 255));
 }
 
 void Enemy::render(sf::RenderTarget* target)
@@ -48,8 +49,6 @@ void Enemy::ifDead()
 {
 	if (this->hp <= 0)
 	{
-		//this->sprite.setColor(sf::Color::Transparent); 
-		//this->shape.setSize({ 0.f, 0.f });
 		if (!this->texture.loadFromFile("graphics/ork_dead.png"))
 			throw("ERROR GRAPHICS");
 		this->sprite.setTexture(this->texture);
@@ -75,7 +74,9 @@ void Enemy::getDMG(int dmg, const float& dt)
 	{
 		this->hp -= dmg;
 		deltatime = 0.f;
+		this->temp = this->sprite.getColor();
+		
 	}
+	this->sprite.setColor(sf::Color(100, 0, 0, 255));
+
 }
-
-

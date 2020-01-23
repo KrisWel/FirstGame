@@ -32,12 +32,15 @@ private:
 	Player* player;
 	Ally* ally;
 	Sword* sword;
-	
 	sf::Music music;
 
+	//Stat window
 	bool stats;
 	sf::Text statistics;
 	std::string str;
+	sf::RectangleShape background;
+	sf::RectangleShape backgroundStats;
+	float time;
 
 	//Quest
 	sf::RectangleShape backgroundQuest;
@@ -52,17 +55,13 @@ private:
 	sf::RectangleShape endShape;
 	bool end;
 
-	//Stats
-	sf::RectangleShape background;
-	sf::RectangleShape backgroundStats;
-	float time;
-
 	//PAUSE
 	sf::RectangleShape backgroundPaused;
 	sf::RectangleShape containerPaused;
 	std::map<std::string, Button*>buttons;
 	bool paused;
 
+	//Background
 	sf::Texture backgroundTexture;
 	sf::View view;
 	
@@ -75,7 +74,5 @@ private:
 	sf::RectangleShape block[4];
 
 	bool swords;
-	
-
 };
 

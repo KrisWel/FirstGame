@@ -9,15 +9,17 @@ public:
 	~Ally();
 
 	//Functions
-	const int getStats(const int stat);
+	const int getStats(const int stat) const;
 	void update(const float& dt);
 	void render(sf::RenderTarget* target);
 	void ifDead();
-
+	
 	//Variables
 	sf::RectangleShape shape;
 
 private:
+
+	
 
 };
 
